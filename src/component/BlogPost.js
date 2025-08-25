@@ -8,22 +8,19 @@ function BlogPost() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-   console.log("BlogPost component mounted with id:", id);
     const fetchBlogPost = async () => {
       try {
-        // Dynamic import based on ID
         const postModule = await import(`../blog-posts/post${id}.js`);
         setPost(postModule.default);
       } catch (error) {
         console.error("Failed to load blog post:", error);
-        console.error("Stack:", error.stack);
         setPost(null);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchBlogPost(); 
+    fetchBlogPost();
   }, [id]);
 
   if (loading) {
@@ -50,9 +47,11 @@ function BlogPost() {
           </div>
         </header>
 
-        <div className="blog-post-featured-image">
-          <div className="blog-image">{post.image}</div>
-        </div>
+        {post.image && (
+          <div className="blog-post-featured-image">
+            <div className="blog-image">{post.image}</div>
+          </div>
+        )}
 
         <div className="blog-post-content">
           <p>{post.content}</p>

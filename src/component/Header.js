@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logoImage from '../assets/images/Vamsi-logo.PNG'; // Import your logo
+import logoImage from '../assets/images/Vamsi-logo.PNG';
 
 function Header() {
   const location = useLocation();
