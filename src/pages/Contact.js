@@ -24,7 +24,7 @@ function Contact() {
   };
 
   return (
-    <section className="container" style={{ marginTop: '150px' }}>
+    <section className="container">
       <div className="contact-section">
         <div className="contact-message">
           <div className="contact-quote">
