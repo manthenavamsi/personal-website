@@ -21,13 +21,6 @@ function Home() {
         <div className="hero-quote">
           "{quotes[quoteIndex]}"
         </div>
-        <div className="hero-image">
-          <div className="philosopher-placeholder">
-            <div className="philosopher-text">श्री कृष्ण</div>
-            <div className="philosopher-subtitle">Greatest Indian Philosopher</div>
-            <div className="consciousness-text">Highest State of Consciousness</div>
-          </div>
-        </div>
       </div>
     </section>
   );

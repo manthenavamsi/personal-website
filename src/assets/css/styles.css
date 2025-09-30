@@ -1058,70 +1058,17 @@ nav {
   min-height: calc(100vh - 200px);
   padding: 20px 0;
   animation: fadeIn 0.8s ease-out;
-  gap: 60px;
 }
 
 .hero-quote {
-  max-width: 60%;
-  font-size: 18px;
-  line-height: 1.5;
+  max-width: 800px;
+  font-size: 24px;
+  line-height: 1.6;
   padding: 20px;
   color: var(--text);
-  text-align: left;
-  margin-bottom: 20px;
-}
-
-.hero-image {
-  width: 35%;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-  min-height: 400px;
-  border-radius: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--heading);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-image::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--surface-glass);
-}
-
-.philosopher-placeholder {
-  position: relative;
-  z-index: 2;
   text-align: center;
-  color: white;
-  padding: 20px;
 }
 
-.philosopher-text {
-  font-size: 36px;
-  font-weight: 600;
-  margin-bottom: 12px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.philosopher-subtitle {
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 8px;
-  opacity: 0.9;
-}
-
-.consciousness-text {
-  font-size: 14px;
-  font-weight: 400;
-  opacity: 0.8;
-  font-style: italic;
-}
 
 
 /* Blog Page Styles */
