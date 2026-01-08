@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkvamsi_website=self.webpackChunkvamsi_website||[]).push([[924],{924:(t,e,i)=>{i.r(e),i.d(e,{default:()=>l});const l={id:3,title:"Title of the blog 3",content:"This is the full content of blog post 1. It would typically be much longer and might include formatting, images, etc.",date:"April 10, 2025"}}}]);
-//# sourceMappingURL=924.11a8daee.chunk.js.map
