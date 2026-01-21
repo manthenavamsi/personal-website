@@ -4,7 +4,7 @@ const projects = [
     id: 1,
     title: "Docufresh",
     description: "A suite of JavaScript libraries that automatically keeps documents fresh. Docufresh replaces dynamic markers like {{current_year}} or {{years_since:2020}} with current values. DocufreshAI extends this with Wikipedia integration and browser-based AI to generate and update content without external API keys.",
-    date: "Published 2025",
+    date: "Published 2026",
     type: "NPM Library",
     links: [
       { label: "Docufresh", url: "https://github.com/manthenavamsi/docufresh", icon: "github" },
@@ -17,7 +17,7 @@ const projects = [
     id: 2,
     title: "The Day Numbers Were Born",
     description: "A children's book that introduces young readers to the fascinating world of numbers through an engaging story. Perfect for early learners and curious minds.",
-    date: "Published 2024",
+    date: "Published 2025",
     type: "Book",
     link: "https://www.amazon.com/Day-Numbers-Were-Born/dp/B0GCTDPLZT",
     imageUrl: `${process.env.PUBLIC_URL}/images/projects/day-numbers-were-born.png`
