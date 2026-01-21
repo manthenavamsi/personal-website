@@ -39,19 +39,25 @@ function Projects() {
                           View Project <FaExternalLinkAlt />
                         </a>
                       )}
-                      {project.links && project.links.map((linkItem, index) => (
-                        <a
-                          key={index}
-                          href={linkItem.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="project-link"
-                        >
-                          {linkItem.icon === 'github' && <FaGithub />}
-                          {linkItem.icon === 'npm' && <FaNpm />}
-                          {linkItem.icon === 'external' && <FaExternalLinkAlt />}
-                          {' '}{linkItem.label}
-                        </a>
+                      {project.linkGroups && project.linkGroups.map((group, groupIndex) => (
+                        <div key={groupIndex} className="project-link-group">
+                          <span className="link-group-name">{group.name}</span>
+                          <div className="link-group-icons">
+                            {group.links.map((linkItem, linkIndex) => (
+                              <a
+                                key={linkIndex}
+                                href={linkItem.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="project-icon-link"
+                                title={linkItem.icon === 'github' ? 'GitHub' : 'NPM'}
+                              >
+                                {linkItem.icon === 'github' && <FaGithub />}
+                                {linkItem.icon === 'npm' && <FaNpm />}
+                              </a>
+                            ))}
+                          </div>
+                        </div>
                       ))}
                     </div>
                   </div>

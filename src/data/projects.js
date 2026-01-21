@@ -6,11 +6,21 @@ const projects = [
     description: "A suite of JavaScript libraries that automatically keeps documents fresh. Docufresh replaces dynamic markers like {{current_year}} or {{years_since:2020}} with current values. DocufreshAI extends this with Wikipedia integration and browser-based AI to generate and update content without external API keys.",
     date: "Published 2026",
     type: "NPM Library",
-    links: [
-      { label: "Docufresh", url: "https://github.com/manthenavamsi/docufresh", icon: "github" },
-      { label: "DocufreshAI", url: "https://github.com/manthenavamsi/docufreshAI", icon: "github" },
-      { label: "npm", url: "https://www.npmjs.com/package/docufresh", icon: "npm" },
-      { label: "npm", url: "https://www.npmjs.com/package/docufreshai", icon: "npm" }
+    linkGroups: [
+      {
+        name: "Docufresh",
+        links: [
+          { url: "https://github.com/manthenavamsi/docufresh", icon: "github" },
+          { url: "https://www.npmjs.com/package/docufresh", icon: "npm" }
+        ]
+      },
+      {
+        name: "DocufreshAI",
+        links: [
+          { url: "https://github.com/manthenavamsi/docufreshAI", icon: "github" },
+          { url: "https://www.npmjs.com/package/docufreshai", icon: "npm" }
+        ]
+      }
     ]
   },
   {

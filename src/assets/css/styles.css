@@ -420,8 +420,39 @@ nav {
 .project-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 20px;
   align-items: center;
+}
+
+.project-link-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.link-group-name {
+  font-weight: 500;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.link-group-icons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.project-icon-link {
+  color: var(--text);
+  font-size: 20px;
+  transition: color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.project-icon-link:hover {
+  color: var(--primary);
+  transform: scale(1.1);
 }
 
 /* Projects Page - Mobile Responsive */
