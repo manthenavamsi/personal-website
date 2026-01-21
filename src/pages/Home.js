@@ -1,25 +1,31 @@
 import React, { useEffect, useState } from 'react';
+import quotes from '../data/quotes';
 
 function Home() {
   const [quoteIndex, setQuoteIndex] = useState(0);
-  const quotes = [
-    "Although, inventors posses with an exceptional ability to solve problems, but it all starts with a keen observation",
-    // Add more quotes here if needed
-  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
       setQuoteIndex((prevIndex) => (prevIndex + 1) % quotes.length);
     }, 5000);
-    
+
     return () => clearInterval(interval);
-  }, [quotes.length]);
+  }, []);
+
+  const currentQuote = quotes[quoteIndex];
 
   return (
     <section className="container">
       <div className="hero">
-        <div className="hero-quote">
-          "{quotes[quoteIndex]}"
+        <div className="hero-quote-container">
+          <div className="hero-quote">
+            "{currentQuote.text}"
+          </div>
+          {currentQuote.author && (
+            <div className="quote-author">
+              — {currentQuote.author}
+            </div>
+          )}
         </div>
       </div>
     </section>

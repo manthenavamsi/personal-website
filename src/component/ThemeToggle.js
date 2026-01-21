@@ -1,110 +1,41 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaSun, FaMoon } from 'react-icons/fa';
 
 const ThemeToggle = () => {
   const [isDark, setIsDark] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
-  // Initialize theme on component mount
   useEffect(() => {
-    const initializeTheme = () => {
-      const root = document.documentElement;
-      const savedTheme = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-      // Priority: saved preference > system preference > default (light)
-      const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
-      const shouldBeDark = initialTheme === 'dark';
-
-      setIsDark(shouldBeDark);
-      root.setAttribute('data-theme', initialTheme);
-
-      // Store the initial theme if not already saved
-      if (!savedTheme) {
-        localStorage.setItem('theme', initialTheme);
-      }
-
-      setIsLoading(false);
-    };
-
-    initializeTheme();
-  }, []);
-
-  // Listen for system theme changes
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-
-    const handleSystemThemeChange = (e) => {
-      // Only update if user hasn't manually set a preference
-      const savedTheme = localStorage.getItem('theme');
-      if (!savedTheme) {
-        const newTheme = e.matches ? 'dark' : 'light';
-        setIsDark(e.matches);
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-      }
-    };
-
-    mediaQuery.addEventListener('change', handleSystemThemeChange);
-    return () => mediaQuery.removeEventListener('change', handleSystemThemeChange);
-  }, []);
-
-  // Apply theme changes
-  useEffect(() => {
-    if (!isLoading) {
-      const root = document.documentElement;
-      const theme = isDark ? 'dark' : 'light';
-
-      // Add transition class for smooth theme switching
-      root.style.transition = 'background-color 0.3s ease, color 0.3s ease';
-      root.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-
-      // Remove transition after animation completes
-      const timer = setTimeout(() => {
-        root.style.transition = '';
-      }, 300);
-
-      return () => clearTimeout(timer);
+    const root = document.documentElement;
+    if (isDark) {
+      root.style.setProperty('--primary', '#7F5AF0');
+      root.style.setProperty('--surface', 'rgba(255, 255, 255, 0.8)');
+      root.style.setProperty('--surface-glass', 'rgba(255, 255, 255, 0.1)');
+      root.style.setProperty('--background', '#16161A');
+      root.style.setProperty('--text', '#94A1B2');
+      root.style.setProperty('--heading', '#FFFFFE');
+      root.style.setProperty('--glass-border', 'rgba(255, 255, 255, 0.08)');
+    } else {
+      root.style.setProperty('--primary', '#4FC1D0');
+      root.style.setProperty('--surface', '#ffffff');
+      root.style.setProperty('--surface-glass', 'rgba(255, 255, 255, 0.8)');
+      root.style.setProperty('--background', '#ffffff');
+      root.style.setProperty('--text', '#333333');
+      root.style.setProperty('--heading', '#333333');
+      root.style.setProperty('--glass-border', 'rgba(79, 193, 208, 0.2)');
     }
-  }, [isDark, isLoading]);
-
-  const toggleTheme = useCallback(() => {
-    setIsDark(prev => !prev);
-  }, []);
-
-  const handleKeyDown = useCallback((e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      toggleTheme();
-    }
-  }, [toggleTheme]);
-
-  if (isLoading) {
-    return null; // Prevent flash of incorrect theme
-  }
+  }, [isDark]);
 
   return (
     <div className="theme-toggle-wrapper">
-      <FaSun
-        className={`theme-icon sun ${!isDark ? 'active' : ''}`}
-        aria-hidden="true"
-      />
+      <FaSun className="theme-icon sun" />
       <button
-        onClick={toggleTheme}
-        onKeyDown={handleKeyDown}
+        onClick={() => setIsDark(!isDark)}
         className={`theme-toggle ${isDark ? 'dark' : 'light'}`}
-        aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
-        aria-pressed={isDark}
-        role="switch"
-        type="button"
+        aria-label="Toggle theme"
       >
-        <span className="toggle-track" aria-hidden="true" />
+        <span className="toggle-track" />
       </button>
-      <FaMoon
-        className={`theme-icon moon ${isDark ? 'active' : ''}`}
-        aria-hidden="true"
-      />
+      <FaMoon className="theme-icon moon" />
     </div>
   );
 };
