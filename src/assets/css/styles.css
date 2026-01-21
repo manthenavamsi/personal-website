@@ -1246,6 +1246,7 @@ nav {
   .contact-form-container {
     padding: 20px;
     border-radius: 15px;
+    width: 100%;
   }
 
   .form-row {
@@ -1365,6 +1366,7 @@ nav {
 
   .contact-form-container {
     padding: 15px;
+    width: 100%;
   }
 
   .project-item {
