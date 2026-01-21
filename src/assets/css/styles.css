@@ -34,7 +34,6 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-y: scroll;
   height: 100%;
 }
 
@@ -43,17 +42,17 @@ body {
   color: var(--text);
   background: var(--background);
   margin: 0;
-  padding: 0 0 20px 0;
+  padding: 0;
   width: 100%;
   overflow-x: hidden;
-  min-height: calc(100vh + 20px);
+  min-height: 100vh;
 }
 
 .container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 24px;
-  margin-top: 80px;
+  margin-top: 20px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -70,7 +69,7 @@ header {
   background-color: transparent;
   padding: 15px 0;
   border-radius: 0;
-  margin: 35px auto;
+  margin: 15px auto;
   max-width: 1400px;
   position: relative;
 }
@@ -240,7 +239,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 150px);
+  min-height: calc(100vh - 180px);
   animation: fadeIn 0.8s ease-out;
 }
 
@@ -817,9 +816,9 @@ nav {
   gap: 100px;
   align-items: center;
   animation: fadeIn 0.8s ease-out;
-  width: calc(100% - 100px); /* Subtracts 40px from each side */
-  margin: 0 auto; /* Centers the nav bar */
-  min-height: calc(100vh - 150px);
+  width: calc(100% - 100px);
+  margin: 0 auto;
+  min-height: calc(100vh - 180px);
 }
 
 .contact-message {
