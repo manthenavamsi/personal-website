@@ -4,83 +4,58 @@ import { FaLinkedin } from 'react-icons/fa';
 function Bio() {
   const capabilities = [
     "Cloud Security Architecture (AWS, Azure, GCP)",
+    "Security Engineering",
     "DevSecOps & Secure SDLC Implementation",
+    "AI-Enabled Security Deployment",
     "Vulnerability Management & Penetration Testing",
-    "Security Governance & Compliance (HIPAA, PCI-DSS, GDPR, SOC2, NIST, ISO 27001)",
+    "Security Governance & Compliance (HIPAA, SOC2, NIST, HITRUST, PCI-DSS)",
     "Incident Response & Threat Detection",
-    "Security Program Development",
+    "Security Program Development & Planning",
     "Risk Assessment & Management",
     "Security Automation & Scripting (Python, Shell)",
     "SIEM & Log Analysis",
     "Vendor Risk Management",
-    "Security Team Leadership & Mentoring"
+    "Security Planning & Cross-Functional Collaboration",
+    "Building Strong Self-Sufficient Teams",
+    "Team Leadership & Mentoring"
   ];
 
   const workHistory = [
     {
-      title: "IT & Security Advisor and Freelancer",
-      company: "FitPeo",
-      period: "May 2021 – Present",
-      achievements: [
-        "Built company's security & IT program from scratch, achieving HIPAA & SOC2 readiness",
-        "Designed HIPAA-compliant cloud infrastructure and monitoring pipelines",
-        "Embedded security into SDLC, cutting release vulnerabilities by 40%",
-        "Led vulnerability management across hybrid environments",
-        "Implemented vendor risk management and access governance"
-      ],
-      keyImpact: "Established scalable framework protecting patient data and enabling market expansion"
-    },
-    {
       title: "Lead Engineer",
       company: "Comcast",
       period: "Sep 2019 – Present",
-      achievements: [
-        "Championed 'Build Security In' initiative across thousands of applications",
-        "Directed enterprise vulnerability management covering 10K+ assets",
-        "Performed risk assessments for PCI-DSS, HIPAA, GDPR, SOX compliance",
-        "Automated patching, scanning, and compliance checks with Python/Shell",
-        "Built SIEM log correlation rules reducing detection time by 30%"
-      ],
-      keyImpact: "Elevated enterprise security posture through scalable detection and secure SDLC"
+      summary: "Led enterprise-wide security enablement across Comcast's Global Technology Organization (GTO), empowering thousands of developers to build secure products at scale. Spearheaded DevSecOps transformation through threat modeling programs, security tooling integration, and developer education initiatives. Drove security product strategy, launching a software supply chain trust program and AI-powered developer assistance tools. Owned incident response operations and security automation across the application lifecycle.",
+      tags: ["DevSecOps", "Threat Modeling", "Security Tooling", "Developer Education", "Incident Response", "Security Automation", "Supply Chain Security", "AI"]
     },
     {
-      title: "Lead Consultant, Risk Management",
+      title: "Head of IT and Security",
+      company: "FitPeo",
+      period: "May 2021 – Dec 2025",
+      summary: "Built and led the security and IT organization from inception at this healthcare technology company specializing in remote patient monitoring and chronic care management. Established core security functions including Governance, Risk & Compliance (GRC), Security Architecture & Engineering, Security Operations, and IT Operations. Achieved SOC2 attestation and implemented HIPAA compliance programs. Developed the DevSecOps practice, threat modeling methodology, incident response capabilities, and third-party risk management program. Managed cross-functional security strategy, budget planning, and an offshore operations team.",
+      tags: ["GRC", "Security Architecture", "Security Operations", "IT Operations", "HIPAA", "SOC2", "DevSecOps", "Third-Party Risk", "Incident Response", "Team Leadership"]
+    },
+    {
+      title: "Lead Security Consultant",
       company: "Meditology Services",
       period: "Oct 2015 – Sep 2019",
-      achievements: [
-        "Led risk assessments and audits (HIPAA, PCI-DSS, GDPR, SOC2) for healthcare and finance clients",
-        "Conducted penetration testing and vulnerability assessments",
-        "Built risk registries and remediation roadmaps",
-        "Presented executive-level summaries to boards and C-levels",
-        "Supported incident response investigations"
-      ],
-      keyImpact: "Enabled clients to maintain certifications and reduce systemic risks"
-    }
-  ];
-
-  const education = [
-    {
-      degree: "Master's - Cyber Security",
-      institution: "Valparaiso University",
-      year: "2016"
+      summary: "Delivered security consulting services to healthcare organizations including hospitals, payers, and technology vendors. Led engagements across Security Assessments, Compliance Audits (HIPAA, NIST CSF, HITRUST, SOC2), and Offensive Security Testing. Provided executive-level advisory services and presented findings to CISO-level stakeholders. Managed a team of consultants across concurrent client engagements.",
+      tags: ["Security Assessments", "Compliance Audits", "HIPAA", "HITRUST", "SOC2", "Penetration Testing", "Executive Advisory", "Team Leadership"]
     },
     {
-      degree: "Master's - Computer Application",
-      institution: "Acharya Nagarjuna University",
-      year: "2011"
+      title: "Lab Assistant & Summer Intern",
+      company: "Valparaiso University",
+      period: "2014 – 2016",
+      summary: "Managed IT infrastructure and security for the Computer Science department. Led a team to architect and deploy a CloudStack virtualization platform, enabling students to work across multiple operating system environments for academic projects.",
+      tags: ["IT Infrastructure", "Virtualization", "CloudStack", "System Administration"]
     },
     {
-      degree: "Bachelor of Arts - Economics",
-      institution: "Acharya Nagarjuna University",
-      year: "2008"
+      title: "Security Operations Analyst",
+      company: "ValueLabs",
+      period: "2012 – 2014",
+      summary: "Operated within the Security Operations Center for pharmaceutical client Celgene. Focused on Threat Detection & Analysis, SIEM management, and Incident Response. Conducted network traffic analysis and developed detection rules to identify and block malicious activity.",
+      tags: ["SOC", "Threat Detection", "SIEM", "Incident Response", "Network Analysis", "IDS/IPS"]
     }
-  ];
-
-  const certifications = [
-    "CISSP (Certified Information Systems Security Professional)",
-    "CEH (Certified Ethical Hacker)",
-    "ITIL (Information Technology Infrastructure Library)",
-    "CCSFP (HITRUST Certified CSF Practitioner)"
   ];
 
   return (
@@ -98,6 +73,14 @@ function Bio() {
           <FaLinkedin className="linkedin-icon" />
           <span>Connect on LinkedIn</span>
         </a>
+      </div>
+
+      {/* Overview Section */}
+      <div className="bio-section">
+        <h2 className="bio-section-title">Overview</h2>
+        <p className="bio-overview">
+          Cybersecurity leader passionate about building security programs that enable business growth. I bring expertise across Security Architecture, Governance Risk & Compliance, DevSecOps, and Security Operations, with a track record of leading teams, driving compliance initiatives, and embedding security into engineering culture.
+        </p>
       </div>
 
       {/* Capabilities Section */}
@@ -126,14 +109,14 @@ function Bio() {
                   <span className="work-period">{job.period}</span>
                 </div>
               </div>
-              <ul className="work-achievements">
-                {job.achievements.map((achievement, idx) => (
-                  <li key={idx}>{achievement}</li>
-                ))}
-              </ul>
-              <div className="work-impact">
-                <strong>Key Impact:</strong> {job.keyImpact}
-              </div>
+              {job.summary && <p className="work-summary">{job.summary}</p>}
+              {job.tags && (
+                <div className="work-tags">
+                  {job.tags.map((tag, idx) => (
+                    <span key={idx} className="work-tag">{tag}</span>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -142,28 +125,19 @@ function Bio() {
       {/* Education Section */}
       <div className="bio-section">
         <h2 className="bio-section-title">Education</h2>
-        <div className="education-list">
-          {education.map((edu, index) => (
-            <div key={index} className="education-item">
-              <h3 className="education-degree">{edu.degree}</h3>
-              <p className="education-details">
-                {edu.institution} ({edu.year})
-              </p>
-            </div>
-          ))}
-        </div>
+        <p className="education-inline">
+          Master's - Computer Applications | Cybersecurity
+          <br />
+          Bachelor's - Economics
+        </p>
       </div>
 
       {/* Certifications Section */}
-      <div className="bio-section">
+      <div className="bio-section bio-section-last">
         <h2 className="bio-section-title">Certifications</h2>
-        <div className="certifications-grid">
-          {certifications.map((cert, index) => (
-            <div key={index} className="certification-badge">
-              {cert}
-            </div>
-          ))}
-        </div>
+        <p className="certifications-inline">
+          CISSP &nbsp;|&nbsp; CEH &nbsp;|&nbsp; ITILv4 &nbsp;|&nbsp; CCSFP (HITRUST Practitioner)
+        </p>
       </div>
     </section>
   );
