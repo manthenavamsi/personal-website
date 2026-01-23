@@ -118,6 +118,7 @@ nav {
   text-decoration: none;
   position: relative;
   font-weight: 500;
+  font-size: 18px;
 }
 
 .nav-links a:hover {
