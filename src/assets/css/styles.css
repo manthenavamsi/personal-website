@@ -1754,7 +1754,8 @@ nav {
 /* Comparison Chart Styles - Simple Vertical Bars */
 .comparison-chart-container {
   position: sticky;
-  top: 100px;
+  top: 50%;
+  transform: translateY(-50%) translateX(30px);
   width: 380px;
   min-width: 380px;
   height: fit-content;
@@ -1765,7 +1766,6 @@ nav {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   opacity: 0;
   visibility: hidden;
-  transform: translateX(30px);
   transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
   pointer-events: none;
 }
@@ -1773,7 +1773,7 @@ nav {
 .comparison-chart-container.visible {
   opacity: 1;
   visibility: visible;
-  transform: translateX(0);
+  transform: translateY(-50%) translateX(0);
   pointer-events: auto;
 }
 
@@ -1794,7 +1794,7 @@ nav {
   position: absolute;
   left: 0;
   top: 0;
-  bottom: 30px;
+  bottom: 40px;
   width: 2px;
   background: #1a5276;
 }
@@ -1803,7 +1803,7 @@ nav {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 30px;
+  bottom: 40px;
   height: 2px;
   background: #1a5276;
 }
@@ -1813,7 +1813,7 @@ nav {
   left: 10px;
   right: 0;
   top: 0;
-  bottom: 30px;
+  bottom: 40px;
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
@@ -1829,13 +1829,13 @@ nav {
   display: flex;
   gap: 4px;
   align-items: flex-end;
-  height: 180px;
+  height: 170px;
 }
 
 .bar {
   width: 22px;
   height: 0;
-  border-radius: 2px 2px 0 0;
+  border-radius: 6px 6px 0 0;
   transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1851,10 +1851,18 @@ nav {
   background: #e74c3c;
 }
 
+.x-axis-labels {
+  position: absolute;
+  left: 10px;
+  right: 0;
+  bottom: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
 .bar-label {
   font-size: 13px;
   color: #555;
-  margin-top: 10px;
   text-align: center;
 }
 
@@ -1908,19 +1916,19 @@ nav {
 
   .comparison-chart-container {
     position: fixed;
-    top: auto;
-    bottom: 20px;
+    top: 50%;
+    bottom: auto;
     right: 20px;
     width: 340px;
     min-width: auto;
     max-width: calc(100vw - 40px);
-    transform: translateY(20px);
+    transform: translateY(-50%) translateX(20px);
     z-index: 100;
     padding: 20px;
   }
 
   .comparison-chart-container.visible {
-    transform: translateY(0);
+    transform: translateY(-50%) translateX(0);
   }
 }
 
@@ -1929,7 +1937,6 @@ nav {
     padding: 15px;
     width: 300px;
     right: 10px;
-    bottom: 10px;
   }
 
   .chart-with-legend {
@@ -1941,17 +1948,17 @@ nav {
   }
 
   .bars-pair {
-    height: 140px;
+    height: 130px;
     gap: 3px;
   }
 
   .bar {
     width: 18px;
+    border-radius: 4px 4px 0 0;
   }
 
   .bar-label {
     font-size: 11px;
-    margin-top: 8px;
   }
 
   .legend-dot {

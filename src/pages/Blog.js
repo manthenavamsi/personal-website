@@ -9,7 +9,7 @@ function Blog() {
   const blogPosts = [
     {
       id: 4,
-      title: "LLMs: A Big Leap for Machines and also a Long Road to Creativity",
+      title: "LLMs: A Big Leap for Machines yet a Long Road to Creativity",
       description: "Exploring how Large Language Models crossed a boundary humans speculated about for centuries, and why creativity remains our edge.",
       date: "January 24, 2026",
       image: llmImage

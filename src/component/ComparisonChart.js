@@ -31,7 +31,6 @@ function ComparisonChart({ visibleBars, isVisible }) {
                       style={{ '--target-height': `${cat.human}%` }}
                     />
                   </div>
-                  <span className="bar-label">{cat.name}</span>
                 </div>
               );
             })}
@@ -39,6 +38,13 @@ function ComparisonChart({ visibleBars, isVisible }) {
 
           {/* X-axis line */}
           <div className="x-axis-line" />
+
+          {/* Labels below x-axis */}
+          <div className="x-axis-labels">
+            {categories.map((cat) => (
+              <span key={cat.id} className="bar-label">{cat.name}</span>
+            ))}
+          </div>
         </div>
 
         {/* Legend */}
