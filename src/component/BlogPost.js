@@ -3,10 +3,6 @@ import { useParams, Link } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import ComparisonChart from './ComparisonChart';
 
-// Import blog images
-const images = {
-  'LLMs.jpg': require('../assets/images/LLMs.jpg')
-};
 
 function BlogPost() {
   const { id } = useParams();
@@ -17,6 +13,8 @@ function BlogPost() {
 
   // Refs for sections that trigger chart animations
   const sectionRefs = useRef({});
+  const lastScrollY = useRef(0);
+  const hasShownChart = useRef(false);
 
   useEffect(() => {
     const fetchBlogPost = async () => {
@@ -40,19 +38,23 @@ function BlogPost() {
 
     const observerOptions = {
       root: null,
-      rootMargin: '-45% 0px -45% 0px',
+      rootMargin: '-30% 0px -30% 0px',
       threshold: 0.1
     };
 
     const handleIntersection = (entries) => {
+      const currentScrollY = window.scrollY;
+      const isScrollingDown = currentScrollY > lastScrollY.current;
+      lastScrollY.current = currentScrollY;
+
       entries.forEach((entry) => {
         const sectionId = entry.target.dataset.sectionId;
-        const isScrollingDown = entry.boundingClientRect.top < entry.rootBounds.height / 2;
 
         if (entry.isIntersecting) {
           // Show chart when entering trigger zone
           if (sectionId === 'chart-trigger-start') {
             setChartVisible(true);
+            hasShownChart.current = true;
           }
 
           // Add bars progressively
@@ -66,27 +68,16 @@ function BlogPost() {
             setVisibleBars(prev => prev.includes('creativity') ? prev : [...prev, 'creativity']);
           }
         } else {
-          // Reverse animation when scrolling back up
-          if (sectionId === 'chart-trigger-start' && !isScrollingDown) {
-            setChartVisible(false);
-            setVisibleBars([]);
-          }
-
-          // Remove bars when scrolling back up past their sections
-          if (sectionId === 'speed-section' && !isScrollingDown) {
-            setVisibleBars(prev => prev.filter(b => b !== 'speed'));
-          }
-          if (sectionId === 'reasoning-section' && !isScrollingDown) {
-            setVisibleBars(prev => prev.filter(b => b !== 'reasoning' && b !== 'creativity'));
-          }
-          if (sectionId === 'creativity-section' && !isScrollingDown) {
-            setVisibleBars(prev => prev.filter(b => b !== 'creativity'));
-          }
-
-          // Hide chart after passing the end trigger (scrolling down)
-          if (sectionId === 'chart-trigger-end' && isScrollingDown) {
-            setChartVisible(false);
-            setVisibleBars([]);
+          // Only hide chart when scrolling back UP past the start trigger
+          // AND only if chart was previously shown
+          if (sectionId === 'chart-trigger-start' && !isScrollingDown && hasShownChart.current) {
+            // Double check: element should be below viewport (user scrolled up past it)
+            const rect = entry.target.getBoundingClientRect();
+            if (rect.top > window.innerHeight * 0.5) {
+              setChartVisible(false);
+              setVisibleBars([]);
+              hasShownChart.current = false;
+            }
           }
         }
       });
@@ -156,11 +147,6 @@ function BlogPost() {
             </div>
           </header>
 
-          {post.featuredImage && images[post.featuredImage] && (
-            <div className="blog-post-featured-image">
-              <img src={images[post.featuredImage]} alt={post.title} />
-            </div>
-          )}
 
           <div className="blog-post-content">
             {renderContent()}

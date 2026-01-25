@@ -1,7 +1,7 @@
 // /src/blog-posts/post4.js
 const blogPost = {
   id: 4,
-  title: "LLMs: A Big Leap for Machines yet a Long Road to Creativity",
+  title: "LLMs: A Big Leap for Machines yet a Long Road to Creative",
   description: "Exploring how Large Language Models crossed a boundary humans speculated about for centuries, and why creativity remains our edge.",
   date: "January 24, 2026",
   hasChart: true,
@@ -53,11 +53,11 @@ const blogPost = {
     },
     {
       type: "paragraph",
+      id: "chart-trigger-end",
       content: "To truly rival human creativity, machines would need something close to human embodiment: sensors that don't just detect signals but experience the world in a meaningful way. That likely requires biohybrid systems or technologies we haven't invented yet. Humanity has surprised itself before, so this isn't impossible, but it's not around the corner either."
     },
     {
       type: "paragraph",
-      id: "chart-trigger-end",
       content: "This is where a simple comparison helps clarify the current landscape. Machines towering over humans in speed, overlapping or surpassing them in reasoning, and still trailing way behind in creativity."
     },
     {
