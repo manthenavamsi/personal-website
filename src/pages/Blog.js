@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaThLarge, FaList } from 'react-icons/fa';
+import llmImage from '../assets/images/LLMs.jpg';
 
 function Blog() {
   const [viewMode, setViewMode] = useState('list');
@@ -11,7 +12,7 @@ function Blog() {
       title: "LLMs: A Big Leap for Machines and also a Long Road to Creativity",
       description: "Exploring how Large Language Models crossed a boundary humans speculated about for centuries, and why creativity remains our edge.",
       date: "January 24, 2026",
-      image: "LLM"
+      image: llmImage
     }
   ];
 
@@ -37,7 +38,13 @@ function Blog() {
       <div className={`blog-posts ${viewMode === 'list' ? 'list-view' : 'tile-view'}`}>
         {blogPosts.map(post => (
           <Link to={`/blog/${post.id}`} key={post.id} className="blog-card">
-            <div className="blog-image">{post.image}</div>
+            <div className="blog-image">
+              {typeof post.image === 'string' && !post.image.includes('/') ? (
+                post.image
+              ) : (
+                <img src={post.image} alt={post.title} />
+              )}
+            </div>
             <div className="blog-content">
               <div className="blog-header">
                 <h3>{post.title}</h3>

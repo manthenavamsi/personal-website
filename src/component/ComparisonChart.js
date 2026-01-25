@@ -11,8 +11,6 @@ function ComparisonChart({ visibleBars, isVisible }) {
   const maxValue = 10;
   const yAxisLabels = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 
-  if (!isVisible) return null;
-
   const renderChart = (title, dataKey) => (
     <div className="chart-panel">
       <h4 className="chart-title">{title}</h4>

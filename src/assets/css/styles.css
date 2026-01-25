@@ -1406,8 +1406,9 @@ nav {
 
 /* Blog Post Page Styles */
 .blog-post-container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 40px auto;
+  padding: 0 20px;
 }
 
 .blog-post-navigation {
@@ -1579,7 +1580,7 @@ nav {
 }
 
 .tile-view .blog-image {
-  width: calc(100% - 30px); /* Reduce width to create horizontal gaps */
+  width: calc(100% - 30px);
   height: 200px;
   background-color: var(--primary);
   display: flex;
@@ -1587,8 +1588,16 @@ nav {
   justify-content: center;
   color: white;
   font-size: 24px;
-  border-radius: 15px; /* Round only top corners */
-  margin: 15px 15px 0 15px; /* Add margin: top left/right bottom */
+  border-radius: 15px;
+  margin: 15px 15px 0 15px;
+  overflow: hidden;
+}
+
+.tile-view .blog-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
 }
 
 
@@ -1673,13 +1682,21 @@ nav {
 }
 
 .list-view .blog-image {
-  width: 200px;
-  min-width: 200px;
+  width: 250px;
+  min-width: 250px;
+  height: 180px;
   background-color: var(--primary);
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
+  overflow: hidden;
+}
+
+.list-view .blog-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .list-view .blog-content {
@@ -1720,22 +1737,26 @@ nav {
   display: flex;
   gap: 40px;
   position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .blog-post-layout .blog-post {
   flex: 1;
-  max-width: 800px;
+  max-width: 900px;
 }
 
 .blog-post-layout.with-chart .blog-post {
-  max-width: 600px;
+  flex: 1;
+  max-width: none;
 }
 
 /* Comparison Chart Styles - Vertical Bars */
 .comparison-chart-container {
   position: sticky;
   top: 100px;
-  width: 480px;
+  width: 420px;
+  min-width: 420px;
   height: fit-content;
   padding: 20px;
   background: var(--surface);
@@ -1743,13 +1764,17 @@ nav {
   border-radius: 15px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   opacity: 0;
-  transform: translateX(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  visibility: hidden;
+  transform: translateX(30px);
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
+  pointer-events: none;
 }
 
 .comparison-chart-container.visible {
   opacity: 1;
+  visibility: visible;
   transform: translateX(0);
+  pointer-events: auto;
 }
 
 .charts-wrapper {
@@ -1880,12 +1905,15 @@ nav {
   }
 
   .comparison-chart-container {
-    position: relative;
-    top: 0;
-    width: 100%;
-    max-width: 500px;
-    margin: 20px auto;
+    position: fixed;
+    top: auto;
+    bottom: 20px;
+    right: 20px;
+    width: 380px;
+    min-width: auto;
+    max-width: calc(100vw - 40px);
     transform: translateY(20px);
+    z-index: 100;
   }
 
   .comparison-chart-container.visible {
