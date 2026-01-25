@@ -67,13 +67,24 @@ function BlogPost() {
           if (sectionId === 'creativity-section') {
             setVisibleBars(prev => prev.includes('creativity') ? prev : [...prev, 'creativity']);
           }
-        } else {
-          // Only hide chart when scrolling back UP past the start trigger
-          // AND only if chart was previously shown
-          if (sectionId === 'chart-trigger-start' && !isScrollingDown && hasShownChart.current) {
-            // Double check: element should be below viewport (user scrolled up past it)
-            const rect = entry.target.getBoundingClientRect();
-            if (rect.top > window.innerHeight * 0.5) {
+        } else if (!isScrollingDown && hasShownChart.current) {
+          // Scrolling back UP - remove bars in reverse order
+          const rect = entry.target.getBoundingClientRect();
+          const isBelowViewport = rect.top > window.innerHeight * 0.5;
+
+          if (isBelowViewport) {
+            // Remove bars in reverse order as user scrolls up
+            if (sectionId === 'creativity-section') {
+              setVisibleBars(prev => prev.filter(b => b !== 'creativity'));
+            }
+            if (sectionId === 'reasoning-section') {
+              setVisibleBars(prev => prev.filter(b => b !== 'reasoning'));
+            }
+            if (sectionId === 'speed-section') {
+              setVisibleBars(prev => prev.filter(b => b !== 'speed'));
+            }
+            // Hide chart completely when scrolling back up past the start trigger
+            if (sectionId === 'chart-trigger-start') {
               setChartVisible(false);
               setVisibleBars([]);
               hasShownChart.current = false;
