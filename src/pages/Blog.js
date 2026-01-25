@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaThLarge, FaList } from 'react-icons/fa';
 
 function Blog() {
-  const [viewMode, setViewMode] = useState('tiles');
+  const [viewMode, setViewMode] = useState('list');
 
   const blogPosts = [
     {

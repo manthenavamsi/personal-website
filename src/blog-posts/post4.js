@@ -5,6 +5,7 @@ const blogPost = {
   description: "Exploring how Large Language Models crossed a boundary humans speculated about for centuries, and why creativity remains our edge.",
   date: "January 24, 2026",
   hasChart: true,
+  featuredImage: "LLMs.jpg",
   sections: [
     {
       type: "paragraph",

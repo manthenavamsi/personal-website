@@ -1,61 +1,68 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
 function ComparisonChart({ visibleBars, isVisible }) {
-  const chartRef = useRef(null);
-
-  // Bar data: percentage values for humans vs machines
+  // Bar data: values out of 10 for humans vs machines
   const categories = [
-    { name: 'Speed', human: 15, machine: 95, id: 'speed' },
-    { name: 'Reasoning', human: 70, machine: 75, id: 'reasoning' },
-    { name: 'Creativity', human: 95, machine: 25, id: 'creativity' }
+    { name: 'Speed', human: 2, machine: 10, id: 'speed' },
+    { name: 'Reasoning', human: 10, machine: 10, id: 'reasoning' },
+    { name: 'Creativity', human: 10, machine: 1, id: 'creativity' }
   ];
+
+  const maxValue = 10;
+  const yAxisLabels = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 
   if (!isVisible) return null;
 
-  return (
-    <div className={`comparison-chart-container ${isVisible ? 'visible' : ''}`} ref={chartRef}>
-      <div className="chart-wrapper">
-        {/* Humans Chart */}
-        <div className="chart-column">
-          <h4 className="chart-title">Humans</h4>
-          <div className="bars-container">
-            {categories.map((cat, index) => (
-              <div key={`human-${cat.id}`} className="bar-row">
-                <span className="bar-label">{cat.name}</span>
-                <div className="bar-track">
-                  <div
-                    className={`bar bar-human ${visibleBars.includes(cat.id) ? 'animate' : ''}`}
-                    style={{
-                      '--target-width': `${cat.human}%`,
-                      transitionDelay: `${index * 0.15}s`
-                    }}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
+  const renderChart = (title, dataKey) => (
+    <div className="chart-panel">
+      <h4 className="chart-title">{title}</h4>
+      <div className="chart-area">
+        {/* Y-axis */}
+        <div className="y-axis">
+          {yAxisLabels.map(label => (
+            <span key={label} className="y-axis-label">{label}</span>
+          ))}
         </div>
 
-        {/* Machines Chart */}
-        <div className="chart-column">
-          <h4 className="chart-title">Machines</h4>
-          <div className="bars-container">
-            {categories.map((cat, index) => (
-              <div key={`machine-${cat.id}`} className="bar-row">
-                <span className="bar-label">{cat.name}</span>
-                <div className="bar-track">
-                  <div
-                    className={`bar bar-machine ${visibleBars.includes(cat.id) ? 'animate' : ''}`}
-                    style={{
-                      '--target-width': `${cat.machine}%`,
-                      transitionDelay: `${index * 0.15}s`
-                    }}
-                  />
-                </div>
-              </div>
+        {/* Chart grid and bars */}
+        <div className="chart-grid">
+          {/* Grid lines */}
+          <div className="grid-lines">
+            {yAxisLabels.map(label => (
+              <div key={label} className="grid-line" />
             ))}
           </div>
+
+          {/* Bars */}
+          <div className="bars-row">
+            {categories.map((cat) => {
+              const value = dataKey === 'human' ? cat.human : cat.machine;
+              const heightPercent = (value / maxValue) * 100;
+              const isBarVisible = visibleBars.includes(cat.id);
+
+              return (
+                <div key={cat.id} className="bar-column">
+                  <div className="bar-wrapper">
+                    <div
+                      className={`vertical-bar ${isBarVisible ? 'animate' : ''}`}
+                      style={{ '--target-height': `${heightPercent}%` }}
+                    />
+                  </div>
+                  <span className="bar-label">{cat.name}</span>
+                </div>
+              );
+            })}
+          </div>
         </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className={`comparison-chart-container ${isVisible ? 'visible' : ''}`}>
+      <div className="charts-wrapper">
+        {renderChart('Humans', 'human')}
+        {renderChart('Computers', 'machine')}
       </div>
     </div>
   );
