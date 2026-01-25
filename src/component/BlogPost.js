@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { FaArrowLeft } from 'react-icons/fa';
+import { FaArrowLeft, FaMedium } from 'react-icons/fa';
 import ComparisonChart from './ComparisonChart';
 
 
@@ -155,6 +155,11 @@ function BlogPost() {
             <h1>{post.title}</h1>
             <div className="blog-post-meta">
               <span className="blog-post-date">{post.date}</span>
+              {post.mediumUrl && (
+                <a href={post.mediumUrl} target="_blank" rel="noopener noreferrer" className="medium-link">
+                  <FaMedium /> Read on Medium
+                </a>
+              )}
             </div>
           </header>
 

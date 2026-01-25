@@ -6,6 +6,7 @@ const blogPost = {
   date: "January 24, 2026",
   hasChart: true,
   featuredImage: "LLMs.jpg",
+  mediumUrl: "https://medium.com/@manthenavamsi/llms-a-big-leap-for-machines-yet-a-long-road-to-be-creative-89170a89c6d7",
   sections: [
     {
       type: "paragraph",

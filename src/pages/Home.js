@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import quotes from '../data/quotes';
 
 function Home() {
-  const [quoteIndex, setQuoteIndex] = useState(0);
+  const [quoteIndex, setQuoteIndex] = useState(() => Math.floor(Math.random() * quotes.length));
 
   useEffect(() => {
     const interval = setInterval(() => {

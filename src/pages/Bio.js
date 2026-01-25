@@ -3,16 +3,16 @@ import { FaLinkedin } from 'react-icons/fa';
 
 function Bio() {
   const capabilities = [
-    "Cloud Security Architecture (AWS, Azure, GCP)",
+    "Cloud Security Architecture",
     "Security Engineering",
     "DevSecOps & Secure SDLC Implementation",
     "AI-Enabled Security Deployment",
     "Vulnerability Management & Penetration Testing",
-    "Security Governance & Compliance (HIPAA, SOC2, NIST, HITRUST, PCI-DSS)",
+    "Security Governance & Compliance",
     "Incident Response & Threat Detection",
     "Security Program Development & Planning",
     "Risk Assessment & Management",
-    "Security Automation & Scripting (Python, Shell)",
+    "Security Automation & Scripting",
     "SIEM & Log Analysis",
     "Vendor Risk Management",
     "Security Planning & Cross-Functional Collaboration",
