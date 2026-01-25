@@ -1,49 +1,34 @@
 import React from 'react';
 
 function ComparisonChart({ visibleBars, isVisible }) {
-  // Bar data: values out of 10 for humans vs machines
+  // Bar data: percentage heights (0-100)
   const categories = [
-    { name: 'Speed', human: 2, machine: 10, id: 'speed' },
-    { name: 'Reasoning', human: 10, machine: 10, id: 'reasoning' },
-    { name: 'Creativity', human: 10, machine: 1, id: 'creativity' }
+    { name: 'Speed', human: 15, machine: 95, id: 'speed' },
+    { name: 'Reasoning', human: 95, machine: 95, id: 'reasoning' },
+    { name: 'Creativity', human: 95, machine: 10, id: 'creativity' }
   ];
 
-  const maxValue = 10;
-  const yAxisLabels = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+  return (
+    <div className={`comparison-chart-container ${isVisible ? 'visible' : ''}`}>
+      <div className="chart-with-legend">
+        <div className="chart-area">
+          {/* Y-axis line */}
+          <div className="y-axis-line" />
 
-  const renderChart = (title, dataKey) => (
-    <div className="chart-panel">
-      <h4 className="chart-title">{title}</h4>
-      <div className="chart-area">
-        {/* Y-axis */}
-        <div className="y-axis">
-          {yAxisLabels.map(label => (
-            <span key={label} className="y-axis-label">{label}</span>
-          ))}
-        </div>
-
-        {/* Chart grid and bars */}
-        <div className="chart-grid">
-          {/* Grid lines */}
-          <div className="grid-lines">
-            {yAxisLabels.map(label => (
-              <div key={label} className="grid-line" />
-            ))}
-          </div>
-
-          {/* Bars */}
-          <div className="bars-row">
+          {/* Bars area */}
+          <div className="bars-area">
             {categories.map((cat) => {
-              const value = dataKey === 'human' ? cat.human : cat.machine;
-              const heightPercent = (value / maxValue) * 100;
               const isBarVisible = visibleBars.includes(cat.id);
-
               return (
-                <div key={cat.id} className="bar-column">
-                  <div className="bar-wrapper">
+                <div key={cat.id} className="bar-group">
+                  <div className="bars-pair">
                     <div
-                      className={`vertical-bar ${isBarVisible ? 'animate' : ''}`}
-                      style={{ '--target-height': `${heightPercent}%` }}
+                      className={`bar bar-machine ${isBarVisible ? 'animate' : ''}`}
+                      style={{ '--target-height': `${cat.machine}%` }}
+                    />
+                    <div
+                      className={`bar bar-human ${isBarVisible ? 'animate' : ''}`}
+                      style={{ '--target-height': `${cat.human}%` }}
                     />
                   </div>
                   <span className="bar-label">{cat.name}</span>
@@ -51,16 +36,22 @@ function ComparisonChart({ visibleBars, isVisible }) {
               );
             })}
           </div>
-        </div>
-      </div>
-    </div>
-  );
 
-  return (
-    <div className={`comparison-chart-container ${isVisible ? 'visible' : ''}`}>
-      <div className="charts-wrapper">
-        {renderChart('Humans', 'human')}
-        {renderChart('Computers', 'machine')}
+          {/* X-axis line */}
+          <div className="x-axis-line" />
+        </div>
+
+        {/* Legend */}
+        <div className="chart-legend">
+          <div className="legend-item">
+            <span className="legend-dot human" />
+            <span className="legend-text">Humans</span>
+          </div>
+          <div className="legend-item">
+            <span className="legend-dot machine" />
+            <span className="legend-text">Machines</span>
+          </div>
+        </div>
       </div>
     </div>
   );
