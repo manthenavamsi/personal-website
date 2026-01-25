@@ -3,10 +3,6 @@
 
 const quotes = [
   {
-    text: "Great inventors solve problems by first observing the world carefully.",
-    author: "Vamsi Manthena"
-  },
-  {
     text: "Innovation distinguishes between a leader and a follower",
     author: "Steve Jobs"
   },

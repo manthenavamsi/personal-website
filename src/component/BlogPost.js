@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
+import ComparisonChart from './ComparisonChart';
 
 function BlogPost() {
   const { id } = useParams();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [chartVisible, setChartVisible] = useState(false);
+  const [visibleBars, setVisibleBars] = useState([]);
+
+  // Refs for sections that trigger chart animations
+  const sectionRefs = useRef({});
 
   useEffect(() => {
     const fetchBlogPost = async () => {
@@ -23,6 +29,60 @@ function BlogPost() {
     fetchBlogPost();
   }, [id]);
 
+  // Set up IntersectionObserver for chart animations
+  useEffect(() => {
+    if (!post || !post.hasChart) return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -20% 0px',
+      threshold: 0.5
+    };
+
+    const handleIntersection = (entries) => {
+      entries.forEach((entry) => {
+        const sectionId = entry.target.dataset.sectionId;
+
+        if (entry.isIntersecting) {
+          // Show chart when entering trigger zone
+          if (sectionId === 'chart-trigger-start') {
+            setChartVisible(true);
+          }
+
+          // Add bars progressively
+          if (sectionId === 'speed-section') {
+            setVisibleBars(prev => prev.includes('speed') ? prev : [...prev, 'speed']);
+          }
+          if (sectionId === 'reasoning-section') {
+            setVisibleBars(prev => prev.includes('reasoning') ? prev : [...prev, 'reasoning']);
+          }
+          if (sectionId === 'creativity-section') {
+            setVisibleBars(prev => prev.includes('creativity') ? prev : [...prev, 'creativity']);
+          }
+        }
+
+        // Hide chart after passing the end trigger
+        if (sectionId === 'chart-trigger-end' && !entry.isIntersecting && entry.boundingClientRect.top < 0) {
+          setChartVisible(false);
+          setVisibleBars([]);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, observerOptions);
+
+    // Observe all sections with IDs
+    Object.values(sectionRefs.current).forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, [post]);
+
+  const setSectionRef = useCallback((id) => (el) => {
+    if (el) sectionRefs.current[id] = el;
+  }, []);
+
   if (loading) {
     return <div className="blog-post-loading">Loading...</div>;
   }
@@ -30,6 +90,31 @@ function BlogPost() {
   if (!post) {
     return <div className="blog-post-loading">Blog post not found</div>;
   }
+
+  // Render structured content
+  const renderContent = () => {
+    // If post has sections (structured content)
+    if (post.sections) {
+      return post.sections.map((section, index) => {
+        if (section.type === 'paragraph') {
+          return (
+            <p
+              key={index}
+              ref={section.id ? setSectionRef(section.id) : null}
+              data-section-id={section.id || null}
+              className={section.id ? 'tracked-section' : ''}
+            >
+              {section.content}
+            </p>
+          );
+        }
+        return null;
+      });
+    }
+
+    // Fallback for simple content
+    return <p>{post.content}</p>;
+  };
 
   return (
     <div className="container blog-post-container">
@@ -39,24 +124,33 @@ function BlogPost() {
         </Link>
       </div>
 
-      <article className="blog-post">
-        <header className="blog-post-header">
-          <h1>{post.title}</h1>
-          <div className="blog-post-meta">
-            <span className="blog-post-date">{post.date}</span>
-          </div>
-        </header>
+      <div className={`blog-post-layout ${post.hasChart ? 'with-chart' : ''}`}>
+        <article className="blog-post">
+          <header className="blog-post-header">
+            <h1>{post.title}</h1>
+            <div className="blog-post-meta">
+              <span className="blog-post-date">{post.date}</span>
+            </div>
+          </header>
 
-        {post.image && (
-          <div className="blog-post-featured-image">
-            <div className="blog-image">{post.image}</div>
+          {post.image && (
+            <div className="blog-post-featured-image">
+              <div className="blog-image">{post.image}</div>
+            </div>
+          )}
+
+          <div className="blog-post-content">
+            {renderContent()}
           </div>
+        </article>
+
+        {post.hasChart && (
+          <ComparisonChart
+            visibleBars={visibleBars}
+            isVisible={chartVisible}
+          />
         )}
-
-        <div className="blog-post-content">
-          <p>{post.content}</p>
-        </div>
-      </article>
+      </div>
 
       <div className="blog-post-navigation">
         <Link to="/blog" className="back-to-blogs-btn-bottom">

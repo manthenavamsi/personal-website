@@ -1714,3 +1714,151 @@ nav {
   color: #555;
   line-height: 1.6;
 }
+
+/* Blog Post Layout with Chart */
+.blog-post-layout {
+  display: flex;
+  gap: 40px;
+  position: relative;
+}
+
+.blog-post-layout .blog-post {
+  flex: 1;
+  max-width: 800px;
+}
+
+.blog-post-layout.with-chart .blog-post {
+  max-width: 650px;
+}
+
+/* Comparison Chart Styles */
+.comparison-chart-container {
+  position: sticky;
+  top: 100px;
+  width: 320px;
+  height: fit-content;
+  padding: 25px;
+  background: var(--surface);
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.comparison-chart-container.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.chart-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.chart-column {
+  width: 100%;
+}
+
+.chart-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--heading);
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.bars-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bar-row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.bar-label {
+  font-size: 13px;
+  color: #666;
+  font-weight: 500;
+}
+
+.bar-track {
+  width: 100%;
+  height: 24px;
+  background: #f0f0f0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  width: 0;
+  border-radius: 12px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bar.animate {
+  width: var(--target-width);
+}
+
+.bar-human {
+  background: linear-gradient(90deg, var(--primary) 0%, #ff7b77 100%);
+}
+
+.bar-machine {
+  background: linear-gradient(90deg, var(--secondary) 0%, #4fd9a0 100%);
+}
+
+/* Tracked sections (optional highlight) */
+.tracked-section {
+  transition: background-color 0.3s ease;
+}
+
+/* Mobile responsive for charts */
+@media (max-width: 1024px) {
+  .blog-post-layout {
+    flex-direction: column;
+  }
+
+  .blog-post-layout .blog-post,
+  .blog-post-layout.with-chart .blog-post {
+    max-width: 100%;
+  }
+
+  .comparison-chart-container {
+    position: relative;
+    top: 0;
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    transform: translateY(20px);
+  }
+
+  .comparison-chart-container.visible {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .comparison-chart-container {
+    padding: 20px;
+  }
+
+  .chart-title {
+    font-size: 14px;
+  }
+
+  .bar-label {
+    font-size: 12px;
+  }
+
+  .bar-track {
+    height: 20px;
+  }
+}

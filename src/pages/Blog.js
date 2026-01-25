@@ -3,45 +3,29 @@ import { Link } from 'react-router-dom';
 import { FaThLarge, FaList } from 'react-icons/fa';
 
 function Blog() {
-  const [viewMode, setViewMode] = useState('tiles'); // 'tiles' or 'list'
-  
-  // Mock blog data - replace with your actual data
+  const [viewMode, setViewMode] = useState('tiles');
+
   const blogPosts = [
     {
-      id: 1,
-      title: "Title of the blog 1",
-      description: "Short description of this blog, Short description of this blog, Short description of this blog.",
-      date: "April 10, 2025",
-      image: "Image"
-    },
-    {
-      id: 2,
-      title: "Title of the blog 2",
-      description: "Short description of this blog, Short description of this blog, Short description of this blog.",
-      date: "April 8, 2025",
-      image: "Image"
-    },
-    {
-      id: 3,
-      title: "Title of the blog 3",
-      description: "Short description of this blog, Short description of this blog, Short description of this blog.",
-      date: "April 5, 2025",
-      image: "Image"
+      id: 4,
+      title: "LLMs: A Big Leap for Machines and also a Long Road to Creativity",
+      description: "Exploring how Large Language Models crossed a boundary humans speculated about for centuries, and why creativity remains our edge.",
+      date: "January 24, 2026",
+      image: "LLM"
     }
   ];
 
   return (
     <section className="container">
       <div className="blog-header">
-
         <div className="view-options">
-          <button 
+          <button
             className={`view-option ${viewMode === 'tiles' ? 'active' : ''}`}
             onClick={() => setViewMode('tiles')}
           >
             <FaThLarge /> Tiles
           </button>
-          <button 
+          <button
             className={`view-option ${viewMode === 'list' ? 'active' : ''}`}
             onClick={() => setViewMode('list')}
           >
@@ -49,7 +33,7 @@ function Blog() {
           </button>
         </div>
       </div>
-      
+
       <div className={`blog-posts ${viewMode === 'list' ? 'list-view' : 'tile-view'}`}>
         {blogPosts.map(post => (
           <Link to={`/blog/${post.id}`} key={post.id} className="blog-card">
