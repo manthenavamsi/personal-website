@@ -1,6 +1,8 @@
 // Add your quotes here. You can include an author field for quotes that have attribution.
 // For quotes without an author, simply omit the author field or leave it as an empty string.
 
+import { TbEscalator } from "react-icons/tb";
+
 const quotes = [
   {
     text: "Innovation distinguishes between a leader and a follower",
@@ -69,6 +71,22 @@ const quotes = [
   {
     text: "Gratitude turns what we have into enough, and more.",
     author: "Melody Beattie"
+  },
+  {
+    text: "The most important thing is that you be a good person and you live by the golden rule of do unto others. If you live by that, that’s all I care about.",
+    author: "Rob Reiner"
+  },
+  {
+    text: "The only time we waste is the time we spend thinking we are alone.",
+    author: "Mitch Albom"
+  },
+  {
+    text: "I love my rejection slips. They show me I try.",
+    author: "Sylvia Plath"
+  },
+  {
+    text: "I have always felt that humor was a wonderful vehicle to let us become connected with each other and ourselves.",
+    author: "Lily Tomlin"
   },
 ];
 
