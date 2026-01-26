@@ -24,14 +24,6 @@
     font-weight: 300;
 }
 
-/* Glass effect utilities */
-.glass {
-  background: var(--surface-glass);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 4px 16px var(--glass-shadow);
-}
-
 html {
   scroll-behavior: smooth;
   height: 100%;

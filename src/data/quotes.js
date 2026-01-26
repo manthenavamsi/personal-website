@@ -1,8 +1,6 @@
 // Add your quotes here. You can include an author field for quotes that have attribution.
 // For quotes without an author, simply omit the author field or leave it as an empty string.
 
-import { TbEscalator } from "react-icons/tb";
-
 const quotes = [
   {
     text: "Innovation distinguishes between a leader and a follower",

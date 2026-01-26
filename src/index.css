@@ -1,26 +1,3 @@
-/* Global theme initialization to prevent FOUC (Flash of Unstyled Content) */
-:root {
-  color-scheme: light dark;
-}
-
-[data-theme="dark"] {
-  color-scheme: dark;
-}
-
-[data-theme="light"] {
-  color-scheme: light;
-}
-
-/* Ensure theme transitions are smooth */
-* {
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-}
-
-/* Disable transitions during theme initialization */
-.theme-loading * {
-  transition: none !important;
-}
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
