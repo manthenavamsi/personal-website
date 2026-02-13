@@ -26,24 +26,32 @@ function Contact() {
     message: 5000
   };
 
-  // Security: Sanitize input to prevent XSS and injection attacks
+  // Security: Sanitize input using allowlist approach instead of regex-based HTML stripping.
+  // React auto-escapes JSX output, and data is sent as JSON to the API,
+  // so we use allowlist character validation rather than blocklist filtering.
   const sanitizeInput = (input, fieldName) => {
     if (!input) return '';
 
     let sanitized = input;
 
-    // Remove any HTML tags
-    sanitized = sanitized.replace(/<[^>]*>/g, '');
-
-    // Remove script tags and event handlers (extra protection)
-    sanitized = sanitized.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
-    sanitized = sanitized.replace(/on\w+\s*=\s*["'][^"']*["']/gi, '');
-    sanitized = sanitized.replace(/javascript:/gi, '');
-
-    // Remove potentially dangerous characters for names (but allow for message)
+    // For name fields: allowlist only letters, spaces, hyphens, apostrophes
     if (fieldName === 'firstName' || fieldName === 'lastName') {
-      // Only allow letters, spaces, hyphens, and apostrophes for names
       sanitized = sanitized.replace(/[^a-zA-Z\s\-']/g, '');
+    }
+
+    // For email: allowlist only valid email characters
+    if (fieldName === 'email') {
+      sanitized = sanitized.replace(/[^a-zA-Z0-9.@_%+\-]/g, '');
+    }
+
+    // For subject: allowlist alphanumeric, spaces, and common punctuation
+    if (fieldName === 'subject') {
+      sanitized = sanitized.replace(/[^a-zA-Z0-9\s.,!?;:'"()\-]/g, '');
+    }
+
+    // For message: allowlist alphanumeric, spaces, and extended punctuation
+    if (fieldName === 'message') {
+      sanitized = sanitized.replace(/[^a-zA-Z0-9\s.,!?;:'"()\-@#$%&*/+=\n\r]/g, '');
     }
 
     // Trim whitespace
@@ -74,22 +82,16 @@ function Contact() {
     return !suspiciousPatterns.some(pattern => pattern.test(email));
   };
 
-  // Security: Check for suspicious content patterns
+  // Security: Since sanitizeInput uses allowlist validation, any characters
+  // outside the allowed set are already stripped. This check verifies the
+  // sanitized input matches expected patterns as a defense-in-depth measure.
   const containsSuspiciousContent = (text) => {
-    const suspiciousPatterns = [
-      /<script/i,
-      /javascript:/i,
-      /on\w+\s*=/i, // event handlers like onclick=
-      /<iframe/i,
-      /<embed/i,
-      /<object/i,
-      /eval\(/i,
-      /expression\(/i,
-      /vbscript:/i,
-      /data:text\/html/i
-    ];
-
-    return suspiciousPatterns.some(pattern => pattern.test(text));
+    // After allowlist sanitization, check if the result still looks reasonable
+    // (e.g., not empty after stripping, not just whitespace)
+    if (!text || !text.trim()) return false;
+    // Check for excessively repeated characters (potential abuse)
+    if (/(.)\1{50,}/.test(text)) return true;
+    return false;
   };
 
   const handleChange = (e) => {
