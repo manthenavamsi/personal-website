@@ -14,8 +14,8 @@ function Contact() {
   const [fieldErrors, setFieldErrors] = useState({});
   const [lastSubmitTime, setLastSubmitTime] = useState(0);
 
-  // Web3Forms access key - messages will be sent to your email
-  const WEB3FORMS_ACCESS_KEY = 'e3f17049-6e8d-4224-b2a3-c99817957492';
+  // Web3Forms access key loaded from environment variable (CWE-798)
+  const WEB3FORMS_ACCESS_KEY = process.env.REACT_APP_WEB3FORMS_ACCESS_KEY || '';
 
   // Security: Input length limits
   const MAX_LENGTHS = {
@@ -210,7 +210,7 @@ function Contact() {
     }
 
     // Check if access key is configured
-    if (WEB3FORMS_ACCESS_KEY === 'YOUR_ACCESS_KEY_HERE') {
+    if (!WEB3FORMS_ACCESS_KEY) {
       setStatusMessage({
         type: 'error',
         text: 'Configuration error. Please contact me via LinkedIn.'
@@ -278,7 +278,6 @@ function Contact() {
         }, 7000);
       }
     } catch (error) {
-      console.error('Error:', error);
       setStatusMessage({
         type: 'error',
         text: 'Network error. Please check your connection and try again.'

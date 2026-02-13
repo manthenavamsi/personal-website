@@ -19,10 +19,15 @@ function BlogPost() {
   useEffect(() => {
     const fetchBlogPost = async () => {
       try {
+        // Validate id is a positive integer to prevent path traversal (CWE-22)
+        if (!/^\d+$/.test(id)) {
+          setPost(null);
+          setLoading(false);
+          return;
+        }
         const postModule = await import(`../blog-posts/post${id}.js`);
         setPost(postModule.default);
       } catch (error) {
-        console.error("Failed to load blog post:", error);
         setPost(null);
       } finally {
         setLoading(false);
