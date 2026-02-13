@@ -41,17 +41,17 @@ function Contact() {
 
     // For email: allowlist only valid email characters
     if (fieldName === 'email') {
-      sanitized = sanitized.replace(/[^a-zA-Z0-9.@_%+\-]/g, '');
+      sanitized = sanitized.replace(/[^a-zA-Z0-9.@_%+-]/g, '');
     }
 
     // For subject: allowlist alphanumeric, spaces, and common punctuation
     if (fieldName === 'subject') {
-      sanitized = sanitized.replace(/[^a-zA-Z0-9\s.,!?;:'"()\-]/g, '');
+      sanitized = sanitized.replace(/[^a-zA-Z0-9\s.,!?;:'"()-]/g, '');
     }
 
     // For message: allowlist alphanumeric, spaces, and extended punctuation
     if (fieldName === 'message') {
-      sanitized = sanitized.replace(/[^a-zA-Z0-9\s.,!?;:'"()\-@#$%&*/+=\n\r]/g, '');
+      sanitized = sanitized.replace(/[^a-zA-Z0-9\s.,!?;:'"()@#$%&*/+=\n\r-]/g, '');
     }
 
     // Trim whitespace
