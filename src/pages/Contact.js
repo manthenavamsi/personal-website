@@ -54,9 +54,6 @@ function Contact() {
       sanitized = sanitized.replace(/[^a-zA-Z0-9\s.,!?;:'"()@#$%&*/+=\n\r-]/g, '');
     }
 
-    // Trim whitespace
-    sanitized = sanitized.trim();
-
     // Enforce max length
     if (MAX_LENGTHS[fieldName]) {
       sanitized = sanitized.substring(0, MAX_LENGTHS[fieldName]);
@@ -158,11 +155,11 @@ function Contact() {
 
     // Sanitize all inputs before validation
     const sanitizedData = {
-      firstName: sanitizeInput(formData.firstName, 'firstName'),
-      lastName: sanitizeInput(formData.lastName, 'lastName'),
-      email: sanitizeInput(formData.email, 'email'),
-      subject: sanitizeInput(formData.subject, 'subject'),
-      message: sanitizeInput(formData.message, 'message')
+      firstName: sanitizeInput(formData.firstName, 'firstName').trim(),
+      lastName: sanitizeInput(formData.lastName, 'lastName').trim(),
+      email: sanitizeInput(formData.email, 'email').trim(),
+      subject: sanitizeInput(formData.subject, 'subject').trim(),
+      message: sanitizeInput(formData.message, 'message').trim()
     };
 
     // Validate required fields
