@@ -16,6 +16,34 @@
   --backdrop: rgba(255, 255, 255, 0.9);
 }
 
+[data-theme="dark"] {
+  --surface: #1e1e2e;
+  --surface-glass: rgba(30, 30, 46, 0.8);
+  --background: #121212;
+  --text: #e0e0e0;
+  --heading: #ffffff;
+  --glass-border: rgba(240, 84, 79, 0.3);
+  --glass-shadow: rgba(0, 0, 0, 0.4);
+  --backdrop: rgba(18, 18, 18, 0.9);
+}
+
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group textarea {
+  background-color: #2a2a3e;
+  color: var(--text);
+  border-color: var(--glass-border);
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: #888;
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] textarea:focus {
+  background-color: #1e1e2e;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -106,7 +134,7 @@ nav {
 }
 
 .nav-links a {
-  color: #333;
+  color: var(--text);
   text-decoration: none;
   position: relative;
   font-weight: 500;
@@ -166,8 +194,10 @@ nav {
   gap: 10px;
   padding: 5px;
   border-radius: 30px;
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--surface-glass);
+  border: 1px solid var(--glass-border);
   backdrop-filter: blur(10px);
+  box-shadow: 0 2px 12px var(--glass-shadow);
   z-index: 1000;
 }
 
@@ -717,12 +747,12 @@ nav {
 }
 
 .work-period {
-  color: #777;
+  color: var(--text);
   font-size: 14px;
 }
 
 .work-summary {
-  color: #555;
+  color: var(--text);
   font-size: 15px;
   line-height: 1.7;
   margin: 15px 0;

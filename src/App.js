@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './component/Header';
+import ThemeToggle from './component/ThemeToggle';
 import Home from './pages/Home';
 import Bio from './pages/Bio';
 import Projects from './pages/Projects';
@@ -14,6 +15,7 @@ function App() {
     <Router basename="/personal-website">
       <div className="App">
         <Header />
+        <ThemeToggle />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
