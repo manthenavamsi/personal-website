@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/personal-website/static/css/main.b926f304.css",
+    "main.css": "/personal-website/static/css/main.71fda570.css",
     "main.js": "/personal-website/static/js/main.0005e7df.js",
     "static/js/806.4184b915.chunk.js": "/personal-website/static/js/806.4184b915.chunk.js",
     "static/js/453.3c767da0.chunk.js": "/personal-website/static/js/453.3c767da0.chunk.js",
     "static/media/LLMs.jpg": "/personal-website/static/media/LLMs.904a7e82db257b4275cd.jpg",
     "static/media/Vamsi-logo.PNG": "/personal-website/static/media/Vamsi-logo.1d8bc253933715a08820.PNG",
     "index.html": "/personal-website/index.html",
-    "main.b926f304.css.map": "/personal-website/static/css/main.b926f304.css.map",
+    "main.71fda570.css.map": "/personal-website/static/css/main.71fda570.css.map",
     "main.0005e7df.js.map": "/personal-website/static/js/main.0005e7df.js.map",
     "806.4184b915.chunk.js.map": "/personal-website/static/js/806.4184b915.chunk.js.map",
     "453.3c767da0.chunk.js.map": "/personal-website/static/js/453.3c767da0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b926f304.css",
+    "static/css/main.71fda570.css",
     "static/js/main.0005e7df.js"
   ]
 }
