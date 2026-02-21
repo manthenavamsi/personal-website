@@ -191,8 +191,8 @@ nav {
   transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 6px 14px;
+  gap: 8px;
+  padding: 5px 10px;
   border-radius: 30px;
   background: rgba(30, 30, 30, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -202,45 +202,54 @@ nav {
 }
 
 .theme-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
   color: #ffffff;
-  font-size: 16px;
-  transition: color 0.3s ease;
+  font-size: 13px;
+  transition: all 0.3s ease;
 }
 
 .theme-toggle {
   position: relative;
-  width: 50px;
-  height: 28px;
-  border: none;
-  border-radius: 14px;
-  background-color: #e4e4e4;
+  width: 40px;
+  height: 22px;
+  border: 1px solid #d0d0d0;
+  border-radius: 11px;
+  background-color: #ffffff;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
   padding: 0;
 }
 
 .theme-toggle.dark {
   background-color: var(--primary);
+  border-color: var(--primary);
 }
 
 .toggle-track {
   position: absolute;
   top: 2px;
   left: 2px;
-  width: 24px;
-  height: 24px;
-  background-color: white;
+  width: 16px;
+  height: 16px;
+  background-color: #666666;
   border-radius: 50%;
-  transition: transform 0.3s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .theme-toggle.dark .toggle-track {
-  transform: translateX(22px);
+  background-color: white;
+  transform: translateX(18px);
 }
 
 .theme-toggle:hover .toggle-track {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
 
@@ -661,7 +670,8 @@ nav {
 }
 
 .bio-section-last {
-  margin-bottom: 100px;
+  margin-bottom: 120px;
+  padding-bottom: 20px;
 }
 
 .bio-section-title {
@@ -1355,21 +1365,28 @@ nav {
   /* Theme Toggle */
   .theme-toggle-wrapper {
     bottom: 20px;
-    padding: 4px;
+    padding: 4px 8px;
+    gap: 6px;
+  }
+
+  .theme-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 11px;
   }
 
   .theme-toggle {
-    width: 44px;
-    height: 24px;
-  }
-
-  .toggle-track {
-    width: 20px;
+    width: 36px;
     height: 20px;
   }
 
+  .toggle-track {
+    width: 14px;
+    height: 14px;
+  }
+
   .theme-toggle.dark .toggle-track {
-    transform: translateX(20px);
+    transform: translateX(16px);
   }
 
   /* Typography */
