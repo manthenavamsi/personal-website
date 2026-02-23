@@ -191,22 +191,26 @@ nav {
   transform: translateX(-50%);
   width: 70px;
   height: 36px;
-  background: #3a3a3a;
+  background: #e8e8e8;
   border: none;
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
   z-index: 1000;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   padding: 0;
+}
+
+.theme-toggle-pill.dark {
+  background: #3a3a3a;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
 }
 
 .toggle-circle {
   position: absolute;
   width: 28px;
   height: 28px;
-  background: white;
+  background: var(--primary);
   border-radius: 50%;
   top: 4px;
   left: 4px;
@@ -218,18 +222,35 @@ nav {
   transform: translateX(34px);
 }
 
+.toggle-sun {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 16px;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.theme-toggle-pill.dark .toggle-sun {
+  opacity: 0.4;
+}
+
 .toggle-moon {
   position: absolute;
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  color: white;
+  color: #666;
   font-size: 16px;
   transition: opacity 0.3s ease;
+  z-index: 1;
 }
 
 .theme-toggle-pill.dark .toggle-moon {
-  opacity: 0.5;
+  color: white;
+  opacity: 1;
 }
 
 
@@ -1359,6 +1380,11 @@ nav {
 
   .theme-toggle-pill.dark .toggle-circle {
     transform: translateX(28px);
+  }
+
+  .toggle-sun {
+    left: 8px;
+    font-size: 14px;
   }
 
   .toggle-moon {

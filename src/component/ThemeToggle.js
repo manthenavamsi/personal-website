@@ -16,6 +16,7 @@ function ThemeToggle() {
       onClick={toggle}
       aria-label="Toggle theme"
     >
+      <span className="toggle-sun">☀</span>
       <span className="toggle-circle"></span>
       <span className="toggle-moon">☽</span>
     </button>
