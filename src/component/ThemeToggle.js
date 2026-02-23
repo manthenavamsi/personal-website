@@ -11,13 +11,14 @@ function ThemeToggle() {
   const toggle = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');
 
   return (
-    <div className="theme-toggle-wrapper">
-      <span className="theme-icon">☀</span>
-      <button className={`theme-toggle${theme === 'dark' ? ' dark' : ''}`} onClick={toggle} aria-label="Toggle theme">
-        <span className="toggle-track"></span>
-      </button>
-      <span className="theme-icon">☽</span>
-    </div>
+    <button
+      className={`theme-toggle-pill${theme === 'dark' ? ' dark' : ''}`}
+      onClick={toggle}
+      aria-label="Toggle theme"
+    >
+      <span className="toggle-circle"></span>
+      <span className="toggle-moon">☽</span>
+    </button>
   );
 }
 

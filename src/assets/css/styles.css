@@ -184,72 +184,52 @@ nav {
   transform: translateY(-8.5px) rotate(-45deg);
 }
 
-.theme-toggle-wrapper {
+.theme-toggle-pill {
   position: fixed;
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 10px;
-  border-radius: 30px;
-  background: rgba(30, 30, 30, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
-  z-index: 1000;
-}
-
-.theme-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  font-size: 13px;
-  transition: all 0.3s ease;
-}
-
-.theme-toggle {
-  position: relative;
-  width: 40px;
-  height: 22px;
-  border: 1px solid #d0d0d0;
-  border-radius: 11px;
-  background-color: #ffffff;
+  width: 70px;
+  height: 36px;
+  background: #3a3a3a;
+  border: none;
+  border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
   padding: 0;
 }
 
-.theme-toggle.dark {
-  background-color: var(--primary);
-  border-color: var(--primary);
-}
-
-.toggle-track {
+.toggle-circle {
   position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 16px;
-  height: 16px;
-  background-color: #666666;
+  width: 28px;
+  height: 28px;
+  background: white;
   border-radius: 50%;
-  transition: all 0.3s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  top: 4px;
+  left: 4px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.theme-toggle.dark .toggle-track {
-  background-color: white;
-  transform: translateX(18px);
+.theme-toggle-pill.dark .toggle-circle {
+  transform: translateX(34px);
 }
 
-.theme-toggle:hover .toggle-track {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+.toggle-moon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 16px;
+  transition: opacity 0.3s ease;
+}
+
+.theme-toggle-pill.dark .toggle-moon {
+  opacity: 0.5;
 }
 
 
@@ -416,7 +396,8 @@ nav {
 }
 
 .project-date {
-  color: #777;
+  color: var(--text);
+  opacity: 0.7;
   font-size: 14px;
 }
 
@@ -578,7 +559,7 @@ nav {
   gap: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: #555;
+  color: var(--text);
 }
 
 .view-option.active {
@@ -608,8 +589,7 @@ nav {
   margin: 0;
   font-size: 22px;
   font-weight: 500;
-  color: #777;
-  color: #333;
+  color: var(--heading);
 }
 
 
@@ -629,7 +609,8 @@ nav {
 
 .bio-title-text {
   font-size: 20px;
-  color: #666;
+  color: var(--text);
+  opacity: 0.8;
   margin-bottom: 20px;
   font-weight: 300;
 }
@@ -952,7 +933,7 @@ nav {
   background-color: #f5f5f5;
   outline: none;
   font-size: 16px;
-  color: #333;
+  color: var(--text);
   transition: border-color 0.3s ease;
 }
 
@@ -1365,30 +1346,24 @@ nav {
   }
 
   /* Theme Toggle */
-  .theme-toggle-wrapper {
+  .theme-toggle-pill {
     bottom: 20px;
-    padding: 4px 8px;
-    gap: 6px;
+    width: 60px;
+    height: 32px;
   }
 
-  .theme-icon {
-    width: 20px;
-    height: 20px;
-    font-size: 11px;
+  .toggle-circle {
+    width: 24px;
+    height: 24px;
   }
 
-  .theme-toggle {
-    width: 36px;
-    height: 20px;
+  .theme-toggle-pill.dark .toggle-circle {
+    transform: translateX(28px);
   }
 
-  .toggle-track {
-    width: 14px;
-    height: 14px;
-  }
-
-  .theme-toggle.dark .toggle-track {
-    transform: translateX(16px);
+  .toggle-moon {
+    right: 8px;
+    font-size: 14px;
   }
 
   /* Typography */
@@ -1570,7 +1545,7 @@ nav {
   align-items: center;
   height: 400px;
   font-size: 20px;
-  color: #777;
+  color: var(--text);
 }
 
 @media (max-width: 768px) {
@@ -1924,7 +1899,7 @@ nav {
 
 .bar-label {
   font-size: 13px;
-  color: #555;
+  color: var(--text);
   text-align: center;
 }
 
@@ -1957,7 +1932,7 @@ nav {
 
 .legend-text {
   font-size: 13px;
-  color: #333;
+  color: var(--text);
 }
 
 /* Tracked sections */
