@@ -29,7 +29,12 @@ function ThemeToggle() {
         setTheme(next);
       });
     });
-    await transition.ready;
+    try {
+      await transition.ready;
+    } catch {
+      // Transition skipped (e.g. tab hidden); the theme has still switched
+      return;
+    }
 
     const { top, left, width, height } = buttonRef.current.getBoundingClientRect();
     const x = left + width / 2;

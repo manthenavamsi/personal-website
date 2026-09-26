@@ -39,7 +39,7 @@ function Contact() {
   const submitButtonRef = useRef(null);
 
   // Web3Forms access key loaded from environment variable (CWE-798)
-  const WEB3FORMS_ACCESS_KEY = process.env.REACT_APP_WEB3FORMS_ACCESS_KEY || '';
+  const WEB3FORMS_ACCESS_KEY = import.meta.env.REACT_APP_WEB3FORMS_ACCESS_KEY || '';
 
   // Security: Input length limits
   const MAX_LENGTHS = {

@@ -30,7 +30,7 @@ const projects = [
     date: "Published 2025",
     type: "Book",
     link: "https://www.amazon.com/Day-Numbers-Were-Born/dp/B0GCTDPLZT",
-    imageUrl: `${process.env.PUBLIC_URL}/images/projects/day-numbers-were-born.png`
+    imageUrl: `${import.meta.env.BASE_URL}images/projects/day-numbers-were-born.png`
   }
 ];
 
