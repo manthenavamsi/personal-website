@@ -1,4 +1,27 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import confetti from 'canvas-confetti';
+
+// Celebrate a sent message with a confetti burst from the Send button
+// (canvas-confetti, the library behind Magic UI's Confetti component)
+const celebrate = (button) => {
+  const rect = button?.getBoundingClientRect();
+  const origin = rect
+    ? {
+        x: (rect.left + rect.width / 2) / window.innerWidth,
+        y: (rect.top + rect.height / 2) / window.innerHeight
+      }
+    : { x: 0.5, y: 0.6 };
+
+  const shared = {
+    origin,
+    colors: ['#f0544f', '#2CB67D', '#ffc857', '#4d9de0', '#ffffff'],
+    disableForReducedMotion: true,
+    zIndex: 2000
+  };
+
+  confetti({ ...shared, particleCount: 100, spread: 70, startVelocity: 45 });
+  confetti({ ...shared, particleCount: 60, spread: 120, startVelocity: 30, decay: 0.92, scalar: 0.8 });
+};
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -13,6 +36,7 @@ function Contact() {
   const [statusMessage, setStatusMessage] = useState({ type: '', text: '' });
   const [fieldErrors, setFieldErrors] = useState({});
   const [lastSubmitTime, setLastSubmitTime] = useState(0);
+  const submitButtonRef = useRef(null);
 
   // Web3Forms access key loaded from environment variable (CWE-798)
   const WEB3FORMS_ACCESS_KEY = process.env.REACT_APP_WEB3FORMS_ACCESS_KEY || '';
@@ -253,6 +277,7 @@ function Contact() {
           type: 'success',
           text: 'Message sent successfully! I will get back to you soon.'
         });
+        celebrate(submitButtonRef.current);
 
         setTimeout(() => {
           setStatusMessage({ type: '', text: '' });
@@ -400,6 +425,7 @@ function Contact() {
                 </div>
               )}
               <button
+                ref={submitButtonRef}
                 type="submit"
                 className="submit-btn"
                 disabled={isSubmitting}

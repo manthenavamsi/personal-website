@@ -184,73 +184,45 @@ nav {
   transform: translateY(-8.5px) rotate(-45deg);
 }
 
-.theme-toggle-pill {
+.theme-toggle {
   position: fixed;
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
-  width: 70px;
-  height: 36px;
-  background: #e8e8e8;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 1000;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0;
-}
-
-.theme-toggle-pill.dark {
-  background: #3a3a3a;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
-}
-
-.toggle-circle {
-  position: absolute;
-  width: 28px;
-  height: 28px;
-  background: var(--primary);
+  border: 1px solid var(--glass-border);
   border-radius: 50%;
-  top: 4px;
-  left: 4px;
-  transition: transform 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  background: var(--surface-glass);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--primary);
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 20px var(--glass-shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.theme-toggle-pill.dark .toggle-circle {
-  transform: translateX(34px);
+.theme-toggle:hover {
+  transform: translateX(-50%) scale(1.08);
+  box-shadow: 0 6px 24px var(--glass-shadow);
 }
 
-.toggle-sun {
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #666;
-  font-size: 16px;
-  transition: opacity 0.3s ease;
-  z-index: 1;
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
 }
 
-.theme-toggle-pill.dark .toggle-sun {
-  opacity: 0.4;
-}
-
-.toggle-moon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #666;
-  font-size: 16px;
-  transition: opacity 0.3s ease;
-  z-index: 1;
-}
-
-.theme-toggle-pill.dark .toggle-moon {
-  color: white;
-  opacity: 1;
+/* Circular theme reveal (driven from ThemeToggle.js) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }
 
 
@@ -268,6 +240,7 @@ nav {
   width: 100%;
   padding: 40px;
   position: relative;
+  text-align: center; /* centres the inline-block SplitText quote */
 }
 
 .hero-quote {
@@ -1367,29 +1340,11 @@ nav {
   }
 
   /* Theme Toggle */
-  .theme-toggle-pill {
+  .theme-toggle {
     bottom: 20px;
-    width: 60px;
-    height: 32px;
-  }
-
-  .toggle-circle {
-    width: 24px;
-    height: 24px;
-  }
-
-  .theme-toggle-pill.dark .toggle-circle {
-    transform: translateX(28px);
-  }
-
-  .toggle-sun {
-    left: 8px;
-    font-size: 14px;
-  }
-
-  .toggle-moon {
-    right: 8px;
-    font-size: 14px;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
   }
 
   /* Typography */
