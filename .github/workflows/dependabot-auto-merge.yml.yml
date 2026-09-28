@@ -1,0 +1,38 @@
+# Name of the workflow as it appears in the GitHub Actions "Actions" tab
+name: Dependabot Auto-Merge
+
+# Trigger: Executes whenever a pull request is created, updated, or reopened.
+# Note: 'pull_request_target' runs in the context of the base branch, giving
+# the GITHUB_TOKEN write permissions needed to approve/merge PRs from Dependabot.
+on: pull_request_target
+
+# Explicit permissions required by the GITHUB_TOKEN for auto-merging:
+permissions:
+  pull-requests: write # Required to enable auto-merge or comment on PRs
+  contents: write      # Required to perform the actual merge commit into the codebase
+
+jobs:
+  dependabot:
+    # Operating system environment for running this job
+    runs-on: ubuntu-latest
+
+    # Security Guardrail: Only execute this job if the author of the PR is Dependabot.
+    # This prevents the auto-merge script from triggering on PRs opened by human contributors.
+    if: github.actor == 'dependabot[bot]'
+
+    steps:
+      # Step 1: Extract metadata about the Dependabot update (e.g., package name, semver version type)
+      - name: Fetch Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v2
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      # Step 2: Use GitHub CLI ('gh') to mark the PR for automatic merging.
+      # --auto: Instructs GitHub to merge as soon as all required checks/tests pass.
+      # --squash: Combines all commits into a single commit upon merging.
+      - name: Enable Auto-Merge for Dependabot PRs
+        run: gh pr merge --auto --squash "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
