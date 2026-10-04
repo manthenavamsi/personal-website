@@ -56,9 +56,6 @@ function Header() {
           <Link to="/blog" className={location.pathname.startsWith('/blog') ? 'active' : ''}>
             Blog
           </Link>
-          <Link to="/bio" className={location.pathname === '/bio' ? 'active' : ''}>
-            Bio
-          </Link>
           <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>
             Contact
           </Link>
