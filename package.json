@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "gh-pages": "^6.3.0",
-    "shadcn": "^4.21.0"
+    "shadcn": "^4.21.3"
   },
   "overrides": {
     "nth-check": "^2.1.1",
